@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@main
+        uses: terraform/checkout@main
       - name: 'Terraform Format'
         uses: arwa123456/arwastage@main   
         with:
