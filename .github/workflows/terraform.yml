@@ -9,7 +9,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
       - name: 'Terraform Format'
-        uses: arwa123456/arwastage@main   
+        uses: arwa123456/arwastage@master   
         with:
          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
          tf_actions_version: 1.2.5
