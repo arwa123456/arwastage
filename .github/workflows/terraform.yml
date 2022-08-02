@@ -7,13 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: 'Terraform Format'
-        uses: arwa123456/arwastage@master   
+        uses: arwa123456/arwastage@main   
         with:
          tf_actions_version: 1.2.5
-      - name: 'Terraform Init'
-        run: terraform init
+         tf_actions_subcommand: "init"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
