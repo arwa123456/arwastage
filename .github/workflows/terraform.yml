@@ -22,29 +22,4 @@ jobs:
         run: terraform apply -auto-approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Configure docker to use the gcloud command-line tool as a credential helper
-      - run: |
-        # Set up docker to authenticate
-        # via gcloud command-line tool.
-        
-    # Build the Docker image
-      - name: Build
-        run: |
-         docker build -t "$REGISTRY_HOSTNAME"/"$GKE_PROJECT"/"$IMAGE":"$GITHUB_SHA" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
-
-    # Push the Docker image to Google Container Registry
-      - name: Publish
-        run: |
-         docker push $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA
-
-    # Set up kustomize
-      - name: Set up Kustomize
-        run: |
-         curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-         chmod u+x ./kustomize
-
-    # Deploy the Docker image to the GKE cluster
-      - name: Deploy
-        run: |
+     
