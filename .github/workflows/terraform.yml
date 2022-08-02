@@ -12,7 +12,6 @@ jobs:
         uses: arwa123456/arwastage@main   
         with:
          tf_actions_version: 1.2.5
-         tf_actions_subcommand: "init"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
