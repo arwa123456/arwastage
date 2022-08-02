@@ -10,7 +10,6 @@ jobs:
       - name: 'Terraform Format'
         uses: arwa123456/STAGEDEV@main
         with:
- with:
           tf_actions_version: 1.2.5
           tf_actions_subcommand: ['init','plan','apply']
         env:
