@@ -9,7 +9,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@main
       - name: 'Terraform Format'
-        uses: arwa123456/arwastage@main   
+        uses: hashicorp/terraform-github-action@main
         with:
          tf_actions_version: 1.2.5
         env:
