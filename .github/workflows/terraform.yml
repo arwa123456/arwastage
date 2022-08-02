@@ -13,7 +13,7 @@ jobs:
         with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         tf_actions_version: 1.2.5
-         - name: Terraform Init
+         - name: 'Terraform Init'
           run: terraform init
           - name: Terraform Plan
           run: terraform plan
