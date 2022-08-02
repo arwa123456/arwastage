@@ -6,6 +6,8 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Checkout'
+        uses: arwa123456/checkout@main
       - name: 'Terraform Format'
         uses: arwa123456/STAGEDEV@main
         with:
