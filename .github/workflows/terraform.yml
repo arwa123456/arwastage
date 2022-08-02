@@ -1,7 +1,5 @@
 name: 'Terraform GitHub Actions'
 on: [push, pull_request]
-env:
-TF_LOG: INFO
 jobs:
   terraform:
     name: 'Terraform'
