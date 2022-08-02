@@ -20,10 +20,9 @@ jobs:
         # On push to main, build or change infrastructure according to Terraform configuration files
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        steps:
-      - id: deploy
-      -  uses: arwa123456/arwastage/deploy-cloudrun@main
-  +  uses: google-github-actions/deploy-cloudrun@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        steps:
+      - id: deploy
+        uses: arwa123456/arwastage/deploy-cloudrun@main
      
