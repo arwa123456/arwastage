@@ -12,6 +12,12 @@ jobs:
         uses: arwa123456/STAGEDEV@main
         with:
           tf_actions_version: 1.2.5
-          tf_actions_subcommand: ['init','plan','apply']
+          - name: Terraform Init
+          run: terraform init
+          - name: Terraform Plan
+          run: terraform plan
+        # On push to main, build or change infrastructure according to Terraform configuration files
+          - name: Terraform Apply
+          run: terraform apply -auto-approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
