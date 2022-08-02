@@ -9,7 +9,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@main
       - name: 'Terraform Format'
-        uses: arwa123456/STAGEDEV@main   
+        uses: arwa123456/arwastage@main   
         with:
          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
          tf_actions_version: 1.2.5
@@ -20,6 +20,10 @@ jobs:
         # On push to main, build or change infrastructure according to Terraform configuration files
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        steps:
+      - id: deploy
+      -  uses: arwa123456/arwastage/deploy-cloudrun@master
+  +  uses: google-github-actions/deploy-cloudrun@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
