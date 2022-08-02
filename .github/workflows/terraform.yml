@@ -10,17 +10,8 @@ jobs:
       - name: 'Terraform Format'
         uses: arwa123456/STAGEDEV@main
         with:
-cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-tf_actions_version: 1.2.5
-- name: Terraform Init
-run: terraform init
-# Checks that all Terraform configuration files adhere to a canonical format
-# - name: Terraform Format
-#  run: terraform fmt -check
-# Generates an execution plan for Terraform
-- name: Terraform Plan
-run: terraform plan
-# On push to main, build or change infrastructure according to Terraform configuration files
-- name: Terraform Apply
-if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-run: terraform apply -auto-approve
+ with:
+          tf_actions_version: 1.2.5
+          tf_actions_subcommand: ['init','plan','apply']
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
