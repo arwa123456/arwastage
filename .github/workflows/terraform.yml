@@ -12,7 +12,7 @@ jobs:
         uses: arwa123456/STAGEDEV@main
         with:
          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        tf_actions_version: 1.2.5
+         tf_actions_version: 1.2.5
       - name: 'Terraform Init'
         run: terraform init
       - name: Terraform Plan
