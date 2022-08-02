@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: 'Terraform Format'
-        uses: arwa123456/arwastage@master   
+        uses: arwa123456/arwastage@main   
         with:
          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
          tf_actions_version: 1.2.5
