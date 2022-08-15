@@ -11,9 +11,7 @@ jobs:
     
         with:
          tf_actions_version: 0.12.18
-      - name: Terraform destroy
-        id: destroy
-        run: terraform destroy
+
       - name: Terraform Init
         id: init
         run: terraform init
@@ -24,7 +22,7 @@ jobs:
         continue-on-error: true
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply 
         env:
           
           ARM_CLIENT_ID:  ${{secrets.TF_ARM_CLIENT_ID}}
