@@ -11,6 +11,9 @@ jobs:
     
         with:
          tf_actions_version: 0.12.18
+      - name: Terraform destroy
+        id: destroy
+        run: terraform destroy
       - name: Terraform Init
         id: init
         run: terraform init
