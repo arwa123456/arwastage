@@ -3,25 +3,38 @@ package test
 import (
 	"testing"
 
+	"github.com/gruntwork-io/terratest/modules/azure"
+	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
+)
 
-//	"github.com/stretchr/testify/assert"
-	)
+func TestTerraformAzureResourceGroupExample(t *testing.T) {
+	t.Parallel()
 
-func TestTerraformHelloWorldExample(t *testing.T) {
-	// retryable errors in terraform testing.
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+	// subscriptionID is overridden by the environment variable "ARM_SUBSCRIPTION_ID"
+	subscriptionID := ""
+	uniquePostfix := random.UniqueId()
+
+	// Configure Terraform setting up a path to Terraform code.
+	terraformOptions := &terraform.Options{
+		// The path to where our Terraform code is located
 		TerraformDir: "../example",
-	})
+		Vars: map[string]interface{}{
+			"postfix": uniquePostfix,
+		},
+	}
 
-	//defer terraform.Destroy(t, terraformOptions)
+	// At the end of the test, run `terraform destroy` to clean up any resources that were created
+	defer terraform.Destroy(t, terraformOptions)
 
-	terraform.Init(t, terraformOptions)
-  defer terraform.Destroy(t, terraformOptions)
-  // When the test is completed, teardown the infrastructure by calling terraform destroy
- 
+	// Run `terraform init` and `terraform apply`. Fail the test if there are any errors.
+	terraform.InitAndApply(t, terraformOptions)
 
-	//output := terraform.Output(t, terraformOptions, "hello_world")
-	//assert.Equal(t, "Hello, World!", output)
+	// Run `terraform output` to get the values of output variables
+	resourceGroupName := terraform.Output(t, terraformOptions, "resource_group_name")
+
+	// Verify the resource group exists
+	exists := azure.ResourceGroupExists(t, resourceGroupName, subscriptionID)
+	assert.True(t, exists, "Resource group does not exist")
 }
-
