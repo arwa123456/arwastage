@@ -16,7 +16,6 @@ jobs:
  
    
      - name: Run Go Tests
-       working-directory: test
        run: go test -v .\test\main_test.go
        env:
           
