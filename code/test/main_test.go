@@ -2,25 +2,18 @@ package test
 
 import (
 	"testing"
-
+        "os"
+	"path"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+        terraformCore "github.com/hashicorp/terraform/terraform"
+
 	//"github.com/stretchr/testify/assert"
 )
 
-type plan struct {
-	Version string `json:"format_version"`
-	Planned struct {
-		Outputs struct {
-			StorageName struct {
-				Value string `json:"value"`
-			} `json:"website_storage_name"`
-		} `json:"outputs"`
-	} `json:"planned_values"`
-}
-
-func TestUT_StorageAccountName_Plan(t *testing.T) {
+func TestUT_StorageAccountName(t *testing.T) {
 	t.Parallel()
 
+	// Test cases for storage account name conversion logic
 	testCases := map[string]string{
 		"TestWebsiteName": "testwebsitenamedata001",
 		"ALLCAPS":         "allcapsdata001",
@@ -30,35 +23,38 @@ func TestUT_StorageAccountName_Plan(t *testing.T) {
 	}
 
 	for input, expected := range testCases {
+		// Specify the test case folder and "-var" options
 		tfOptions := &terraform.Options{
-			TerraformDir: "../example",
+			TerraformDir: "./fixtures/storage-account-name",
 			Vars: map[string]interface{}{
 				"website_name": input,
 			},
 		}
 
+		// Terraform init and plan only
 		tfPlanOutput := "terraform.tfplan"
-
 		terraform.Init(t, tfOptions)
 		terraform.RunTerraformCommand(t, tfOptions, terraform.FormatArgs(tfOptions, "plan", "-out="+tfPlanOutput)...)
 
-		tfOptionsEmpty := &terraform.Options{}
-		planJSON, err := terraform.RunTerraformCommandAndGetStdoutE(
-			t, tfOptions, terraform.FormatArgs(tfOptionsEmpty, "show", "-json", tfPlanOutput)...,
-		)
-
+		// Read and parse the plan output
+		f, err := os.Open(path.Join(tfOptions.TerraformDir, tfPlanOutput))
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer f.Close()
+		plan, err := terraformCore.ReadPlan(f)
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		res := plan{}
-		json.Unmarshal([]byte(planJSON), &res)
-
-		actualStorageName := res.Planned.Outputs.StorageName.Value
-		if actualStorageName != expected {
-			t.Fatalf("Expected %v, but found %v", expected, actualStorageName)
-		} else {
-			t.Logf("Success: Input:%v, StorageName:%v", input, actualStorageName)
+		// Validate the test result
+		for _, mod := range plan.Diff.Modules {
+			if len(mod.Path) == 2 && mod.Path[0] == "root" && mod.Path[1] == "staticwebpage" {
+				actual := mod.Resources["azurerm_storage_account.main"].Attributes["name"].New
+				if actual != expected {
+					t.Fatalf("Expect %v, but found %v", expected, actual)
+				}
+			}
 		}
 	}
 }
