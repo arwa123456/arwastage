@@ -2,12 +2,16 @@ provider "azurerm" {
 
     features {}
 }
-resource "azurerm_resource_group" "example" {
+/*resource "azurerm_resource_group" "example" {
   name     = "stage-resources"
   location = "southafricanorth"
+}*/
+resource  "azurerm_resource_group" "example" {
+  name     = "terratest-rg-${var.postfix}"
+  location = var.location
 }
 ///////////////////////////////////////////////////////////////////
-//Storage account 
+/*//Storage account 
 resource "azurerm_storage_account" "example" {
   name                     = "storageaccountnamee"
   resource_group_name      = azurerm_resource_group.example.name
@@ -25,7 +29,7 @@ resource "azurerm_storage_account" "example" {
     accountreplicationtype=var.actrepltype
 }*/
 /////////////////////////////////////////////////////////////////
-resource "azurerm_storage_container" "example" {
+/*resource "azurerm_storage_container" "example" {
   name                  = "content"
   storage_account_name  = azurerm_storage_account.example.name
   container_access_type = "private"
@@ -37,7 +41,7 @@ resource "azurerm_storage_blob" "example" {
   storage_container_name = azurerm_storage_container.example.name
   type                   = "Block"
   source                 = "some-local-file.zip"
-}
+}*/
 
   /* terraform {   
  backend "azurerm" {   
