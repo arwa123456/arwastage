@@ -2,6 +2,11 @@ name: 'Terraform GitHub Actions'
 on: [push, pull_request]
 
 jobs:
+  test:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
