@@ -18,7 +18,13 @@ jobs:
      - name: Run Go Tests
        working-directory: test
        run: go test -v .\test\main_test.go
-     
+       env:
+          
+          ARM_CLIENT_ID:  ${{secrets.TF_ARM_CLIENT_ID}}
+          ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+          ARM_SUBSCRIPTION_ID:  ${{secrets.TF_ARM_SUBSCRIPTION_ID}}
+          ARM_TENANT_ID:  ${{secrets.TF_ARM_TENANT_ID}}
+ 
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
