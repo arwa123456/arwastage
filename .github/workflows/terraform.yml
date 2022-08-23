@@ -15,8 +15,9 @@ jobs:
           cache: false
  
    
-     - name: Run Go Tests
-       run: go test -v .\test\main_test.go
+     - name: cd
+ 
+       run: cd
        env:
           
           ARM_CLIENT_ID:  ${{secrets.TF_ARM_CLIENT_ID}}
