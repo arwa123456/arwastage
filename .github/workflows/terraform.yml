@@ -19,7 +19,7 @@ jobs:
        run: go help modules
      - name: Run Go Tests
        
-       run: go test -v .\test\main_test.go -timeout 20m -force
+       run: go test -v .\test\main_test.go -timeout 20m -f
      
   terraform:
     name: 'Terraform'
