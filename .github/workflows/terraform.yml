@@ -11,9 +11,7 @@ jobs:
     
         with:
          tf_actions_version: 0.12.18
-      - name: Download Go Modules
-        working-directory: test
-        run: go mod download
+      
       - name: Run Go Tests
         working-directory: test
         run: go test -v -timeout 20m
