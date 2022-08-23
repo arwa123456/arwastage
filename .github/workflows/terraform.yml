@@ -13,9 +13,12 @@ jobs:
        with:
           go-version: 1.18
           cache: false
+     - name: get github
+       
+       run: go get github.com/gruntwork-io/terratest/modules/terraform
      - name: Run Go Tests
        
-       run: go run -v .\test\main_test.go -timeout 20m
+       run: go test -v .\test\main_test.go -timeout 20m
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
