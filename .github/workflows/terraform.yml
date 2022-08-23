@@ -7,6 +7,12 @@ jobs:
       id-token: write
       contents: read
     runs-on: ubuntu-latest
+    steps:
+     - name: 'teste'
+       uses: actions/setup-go@v3
+       with:
+          go-version: 1.18
+          cache: true
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
@@ -16,11 +22,7 @@ jobs:
     
         with:
          tf_actions_version: 0.12.18
-      - name: 'teste'
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.18
-          cache: true
+     
       - name: Download Go Modules
         working-directory: test
         run: go mod download
