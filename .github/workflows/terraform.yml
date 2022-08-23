@@ -18,6 +18,9 @@ jobs:
      - name: cd
  
        run: cd
+     - name: pwd
+ 
+       run: pwd
        env:
           
           ARM_CLIENT_ID:  ${{secrets.TF_ARM_CLIENT_ID}}
