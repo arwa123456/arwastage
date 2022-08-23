@@ -31,7 +31,7 @@ func TestUT_StorageAccountName_Plan(t *testing.T) {
 
 	for input, expected := range testCases {
 		tfOptions := &terraform.Options{
-			TerraformDir: "./fixtures/storage-account-name",
+			TerraformDir: "../example",
 			Vars: map[string]interface{}{
 				"website_name": input,
 			},
