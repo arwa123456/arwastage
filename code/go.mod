@@ -8,6 +8,7 @@ require (
 )
 
 require (
+        ../arwastage
 	cloud.google.com/go v0.83.0 // indirect
 	cloud.google.com/go/storage v1.10.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
