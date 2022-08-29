@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	cloud.google.com/go v0.83.0 // indirect
+	/*cloud.google.com/go v0.83.0 // indirect
 	cloud.google.com/go/storage v1.10.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
@@ -54,5 +54,5 @@ require (
 	google.golang.org/genproto v0.0.0-20210602131652-f16073e35f0c // indirect
 	google.golang.org/grpc v1.38.0 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect*/
 )
