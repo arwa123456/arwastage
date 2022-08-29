@@ -9,24 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: setup env
-        shell: bash
-        run: |
-          echo "::set-env name=GOPATH::${{ github.workspace }}/go"
-          echo "::add-path::${{ github.workspace }}/go/bin"
-
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go-version }}
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
-
-      - name: Build
-        env:
-          GOPROXY: "https://proxy.golang.org"
-        run: go build .
+    
       
       
           
