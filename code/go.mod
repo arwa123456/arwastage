@@ -1,10 +1,11 @@
 module example.com/m
 
-go 1.19
+go 1.15
 
 require (
-	github.com/gruntwork-io/terratest v0.40.19
-	github.com/stretchr/testify v1.8.0
+	
+	github.com/gruntwork-io/terratest v0.31.2
+	github.com/stretchr/testify v1.6.1
 )
 
 require (
