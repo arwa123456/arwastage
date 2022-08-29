@@ -17,8 +17,8 @@ jobs:
      
        run: go env -w GO111MODULE=auto
      - name: Run Go Tests
-       working-directory: 
-       run: go test -v .\test\main_test.go
+       working-directory: ../ 
+       run: go test -v ..\test\main_test.go
      
      
        
