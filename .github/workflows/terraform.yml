@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    
-      
-      
-          
-      - name: Run Go Tests
+     - name: Rune 
         
-        run: go test -v .\test\main_test.go
+       run: cd arwastage/test 
+     
+     - name: Run Go Tests
         
-        env:
+       run: go test -v .\test\main_test.go
+        
+       env:
           ARM_USE_OIDC: 1
           ARGS: "-av"
           ARM_CLIENT_ID:  ${{secrets.TF_ARM_CLIENT_ID}}
