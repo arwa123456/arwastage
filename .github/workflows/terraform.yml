@@ -11,7 +11,7 @@ jobs:
 
      - name: Rune 
         
-       run: cd arwastage/test 
+       run: cd arwastage/code/test 
      
      - name: Run Go Tests
         
