@@ -7,7 +7,7 @@ jobs:
       id-token: write
       contents: read
     runs-on: ubuntu-latest
-  steps:
+    steps:
 
 
       - name: Set up Go
