@@ -15,6 +15,9 @@ jobs:
      - name: cd 
      
        run:  cd ../example
+     - name: Run Go Tests
+       working-directory: test
+       run: go test -v .\test\main_test.go
      
      
        
