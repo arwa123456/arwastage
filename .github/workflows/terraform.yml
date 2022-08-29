@@ -9,7 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      
+     - name: Run Go heps
+        
+       run: go help modules
+       
      
      - name: Run Go Tests
         
