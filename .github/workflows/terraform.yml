@@ -26,13 +26,7 @@ jobs:
         with:
           path: src/example.com/owner/repo # add this
       
-      - name: Install goveralls
-        run: go install github.com/mattn/goveralls@latest
-      - name: Send coverage
-        env:
-          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: goveralls -coverprofile=covprofile -service=github
-        working-directory: src/example.com/owner/repo # add this
+      
       - name: Run Go Tests
         working-directory: test
         run: go test -v .\test\main_test.go
