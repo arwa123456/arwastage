@@ -13,6 +13,9 @@ jobs:
        uses: actions/setup-go@v3
        with:
           go-version: 1.18
+     - name: 'go env '
+     
+       run: go env -w GO111MODULE=auto
      - name: Run Go Tests
        working-directory: ../arwastage
        run: go test -v .\main_test.go
