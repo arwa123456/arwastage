@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-     - name: Rune 
-        
-       run: cd arwastage/code/test 
+      
      
      - name: Run Go Tests
         
