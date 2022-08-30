@@ -14,9 +14,9 @@ jobs:
        run: go help modules
        
      
-     - name: Run Go Tests
+    # - name: Run Go Tests
         
-       run: go test -v .\test\main_test.go
+   #   run: go test -v .\test\main_test.go
         
        env:
           ARM_USE_OIDC: 1
